@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuestra Historia De Amor ❤️</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #feada6 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      color: #4a4a4a;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 35px 25px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #e63946;
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+    p.sub {
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 25px;
+    }
+    .counter-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+    .box {
+      background: #fff0f3;
+      border: 1px solid #ffccd5;
+      padding: 12px 5px;
+      border-radius: 12px;
+    }
+    .number {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #c9184a;
+      display: block;
+    }
+    .label {
+      font-size: 0.75rem;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .btn-album {
+      display: inline-block;
+      width: 100%;
+      background: linear-gradient(45deg, #ff4d6d, #c9184a);
+      color: white;
+      text-decoration: none;
+      padding: 15px 20px;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 1rem;
+      box-shadow: 0 5px 15px rgba(201, 24, 74, 0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-album:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(201, 24, 74, 0.4);
+    }
+    .heart {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      animation: beat 1.2s infinite ease-in-out;
+    }
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="heart">❤️</div>
+    <h1>Llevamos Juntos</h1>
+    <p class="sub">Desde el 20 de junio de 2026</p>
+
+    <div class="counter-grid">
+      <div class="box">
+        <span class="number" id="days">0</span>
+        <span class="label">Días</span>
+      </div>
+      <div class="box">
+        <span class="number" id="hours">0</span>
+        <span class="label">Horas</span>
+      </div>
+      <div class="box">
+        <span class="number" id="minutes">0</span>
+        <span class="label">Min</span>
+      </div>
+      <div class="box">
+        <span class="number" id="seconds">0</span>
+        <span class="label">Seg</span>
+      </div>
+    </div>
+
+    <!-- Enlace directo al álbum de iCloud -->
+    <a href="https://www.icloud.com/sharedalbum/#D2Bv3IwUlyFWBtI_N4LdiFlbGxQCAEQARogvA8cu3RlWarQOTvramhjWubMlxxSzGx67AQJz0zXkXI" target="_blank" class="btn-album">
+      📸 Ver Nuestro Álbum de Fotos
+    </a>
+  </div>
+
+  <script>
+    // Fecha de inicio: 20 de junio de 2026
+    const startDate = new Date('2026-06-20T00:00:00');
+
+    function updateCounter() {
+      const now = new Date();
+      const diff = now - startDate;
+
+      if (diff < 0) {
+        document.getElementById('days').innerText = 0;
+        document.getElementById('hours').innerText = 0;
+        document.getElementById('minutes').innerText = 0;
+        document.getElementById('seconds').innerText = 0;
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / 1000 / 60) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById('days').innerText = days;
+      document.getElementById('hours').innerText = hours;
+      document.getElementById('minutes').innerText = minutes;
+      document.getElementById('seconds').innerText = seconds;
+    }
+
+    setInterval(updateCounter, 1000);
+    updateCounter();
+  </script>
+</body>
+</html>
