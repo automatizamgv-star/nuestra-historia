@@ -19,51 +19,140 @@
       align-items: center;
       padding: 20px;
       color: #4a4a4a;
+      overflow-x: hidden;
+      position: relative;
     }
+
+    /* Corazones Flotantes */
+    .heart-bg {
+      position: fixed;
+      top: -10vh;
+      font-size: 1.5rem;
+      user-select: none;
+      pointer-events: none;
+      animation: fall linear infinite;
+      z-index: 0;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(115vh) rotate(360deg);
+      }
+    }
+
     .card {
-      background: rgba(255, 255, 255, 0.92);
+      position: relative;
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.93);
       backdrop-filter: blur(10px);
       border-radius: 24px;
-      padding: 35px 25px;
-      max-width: 420px;
+      padding: 35px 22px;
+      max-width: 430px;
       width: 100%;
       text-align: center;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.12);
     }
+
+    .heart-main {
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+      display: inline-block;
+      animation: beat 1.2s infinite ease-in-out;
+    }
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
     h1 {
       color: #e63946;
-      font-size: 1.8rem;
-      margin-bottom: 10px;
+      font-size: 1.7rem;
+      margin-bottom: 6px;
     }
     p.sub {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: #666;
-      margin-bottom: 25px;
+      margin-bottom: 22px;
     }
+
+    /* Grid del Contador (Años, Meses, Días, Horas, Min, Seg) */
     .counter-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin-bottom: 30px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 25px;
     }
     .box {
       background: #fff0f3;
       border: 1px solid #ffccd5;
-      padding: 12px 5px;
+      padding: 10px 4px;
       border-radius: 12px;
     }
     .number {
-      font-size: 1.5rem;
+      font-size: 1.35rem;
       font-weight: bold;
       color: #c9184a;
       display: block;
     }
     .label {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: #555;
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
+
+    /* Carta Interactiva */
+    .envelope-wrapper {
+      margin: 20px 0;
+      cursor: pointer;
+    }
+    .envelope-btn {
+      background: #ffe5ec;
+      border: 2px dashed #ff4d6d;
+      padding: 14px;
+      border-radius: 16px;
+      color: #c9184a;
+      font-weight: bold;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+    .envelope-btn:hover {
+      background: #ffccd5;
+      transform: scale(1.02);
+    }
+    .letter-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s ease-in-out, padding 0.4s ease;
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid #ffccd5;
+      text-align: left;
+      font-size: 0.92rem;
+      line-height: 1.5;
+      color: #4a4a4a;
+      padding: 0 18px;
+      margin-top: 10px;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.03);
+    }
+    .letter-content.open {
+      max-height: 400px;
+      padding: 18px;
+    }
+    .letter-content p {
+      margin-bottom: 10px;
+    }
+    .letter-signature {
+      text-align: right;
+      font-weight: bold;
+      color: #c9184a;
+      margin-top: 10px;
+    }
+
+    /* Botón Álbum */
     .btn-album {
       display: inline-block;
       width: 100%;
@@ -76,30 +165,45 @@
       font-size: 1rem;
       box-shadow: 0 5px 15px rgba(201, 24, 74, 0.3);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
+      margin-top: 10px;
     }
     .btn-album:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 20px rgba(201, 24, 74, 0.4);
     }
-    .heart {
-      font-size: 2rem;
-      margin-bottom: 15px;
-      animation: beat 1.2s infinite ease-in-out;
-    }
-    @keyframes beat {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-    }
   </style>
 </head>
 <body>
 
+  <!-- Lluvia de corazones -->
+  <script>
+    for (let i = 0; i < 15; i++) {
+      let heart = document.createElement('div');
+      heart.className = 'heart-bg';
+      heart.innerText = ['❤️', '💖', '💕', '🌸'][Math.floor(Math.random() * 4)];
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+      heart.style.animationDelay = Math.random() * 5 + 's';
+      heart.style.opacity = Math.random() * 0.7 + 0.3;
+      document.body.appendChild(heart);
+    }
+  </script>
+
   <div class="card">
-    <div class="heart">❤️</div>
+    <div class="heart-main">❤️</div>
     <h1>Llevamos Juntos</h1>
     <p class="sub">Desde el 20 de junio de 2026</p>
 
+    <!-- Contador con Años, Meses, Días, Horas, Min, Seg -->
     <div class="counter-grid">
+      <div class="box">
+        <span class="number" id="years">0</span>
+        <span class="label">Años</span>
+      </div>
+      <div class="box">
+        <span class="number" id="months">0</span>
+        <span class="label">Meses</span>
+      </div>
       <div class="box">
         <span class="number" id="days">0</span>
         <span class="label">Días</span>
@@ -118,6 +222,19 @@
       </div>
     </div>
 
+    <!-- Carta desplegable -->
+    <div class="envelope-wrapper">
+      <div class="envelope-btn" onclick="toggleLetter()">
+        <span>💌</span> <span id="env-text">Pulsa aquí para abrir tu carta</span>
+      </div>
+      <div class="letter-content" id="letter">
+        <p>¡Hola, mi amor! ❤️</p>
+        <p>Cada segundo a tu lado cuenta y se convierte en uno de mis mejores recuerdos. Gracias por hacer que cada día juntos sea especial y único.</p>
+        <p>He preparado este rinconcito para que nunca olvides todo el tiempo que llevamos construyendo nuestra historia de amor juntos.</p>
+        <div class="letter-signature">Te quiero muchísimo 💕</div>
+      </div>
+    </div>
+
     <!-- Enlace directo al álbum de iCloud -->
     <a href="https://www.icloud.com/sharedalbum/#D2Bv3IwUlyFWBtI_N4LdiFlbGxQCAEQARogvA8cu3RlWarQOTvramhjWubMlxxSzGx67AQJz0zXkXI" target="_blank" class="btn-album">
       📸 Ver Nuestro Álbum de Fotos
@@ -125,14 +242,13 @@
   </div>
 
   <script>
-    // Fecha de inicio: 20 de junio de 2026
     const startDate = new Date('2026-06-20T00:00:00');
 
     function updateCounter() {
       const now = new Date();
-      const diff = now - startDate;
-
-      if (diff < 0) {
+      if (now < startDate) {
+        document.getElementById('years').innerText = 0;
+        document.getElementById('months').innerText = 0;
         document.getElementById('days').innerText = 0;
         document.getElementById('hours').innerText = 0;
         document.getElementById('minutes').innerText = 0;
@@ -140,15 +256,41 @@
         return;
       }
 
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / 1000 / 60) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
+      let years = now.getFullYear() - startDate.getFullYear();
+      let months = now.getMonth() - startDate.getMonth();
+      let days = now.getDate() - startDate.getDate();
 
+      if (days < 0) {
+        months -= 1;
+        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        days += prevMonth.getDate();
+      }
+      if (months < 0) {
+        years -= 1;
+        months += 12;
+      }
+
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+      const seconds = now.getSeconds();
+
+      document.getElementById('years').innerText = years;
+      document.getElementById('months').innerText = months;
       document.getElementById('days').innerText = days;
       document.getElementById('hours').innerText = hours;
       document.getElementById('minutes').innerText = minutes;
       document.getElementById('seconds').innerText = seconds;
+    }
+
+    function toggleLetter() {
+      const letter = document.getElementById('letter');
+      const envText = document.getElementById('env-text');
+      letter.classList.toggle('open');
+      if (letter.classList.contains('open')) {
+        envText.innerText = 'Cerrar carta';
+      } else {
+        envText.innerText = 'Pulsa aquí para abrir tu carta';
+      }
     }
 
     setInterval(updateCounter, 1000);
