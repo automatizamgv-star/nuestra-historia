@@ -100,12 +100,18 @@
       letter-spacing: 0.5px;
     }
 
-    /* Reproductor de Música */
+    /* Reproductor de Audio */
     .music-container {
-      margin-bottom: 20px;
+      background: #ffe5ec;
+      padding: 12px;
       border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border: 1px solid #ffccd5;
+      margin-bottom: 20px;
+    }
+    audio {
+      width: 100%;
+      height: 36px;
+      outline: none;
     }
 
     /* Carta Interactiva */
@@ -230,14 +236,16 @@
       </div>
     </div>
 
-    <!-- Reproductor Audio Nativo -->
-<div class="music-container" style="background: #ffe5ec; padding: 10px; border-radius: 16px; border: 1px solid #ffccd5;">
-  <p style="font-size: 0.8rem; font-weight: bold; color: #c9184a; margin-bottom: 6px;">🎵 Extremoduro - Si te vas</p>
-  <audio controls style="width: 100%; height: 36px;">
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-    Tu navegador no soporta el reproductor de audio.
-  </audio>
-</div>
+    <!-- Reproductor de Audio Nativo -->
+    <div class="music-container">
+      <p style="font-size: 0.85rem; font-weight: bold; color: #c9184a; margin-bottom: 8px;">
+        🎵 Extremoduro - Si te vas
+      </p>
+      <audio controls>
+        <source src="cancion.mp3" type="audio/mpeg">
+        Tu navegador no soporta el reproductor de audio.
+      </audio>
+    </div>
 
     <!-- Carta desplegable -->
     <div class="envelope-wrapper">
